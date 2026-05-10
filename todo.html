@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Manager - Calm & Productive</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="todo.css">
+</head>
+<body>
+    <!-- VIDEO BACKGROUND -->
+    <video class="bg-video" autoplay muted loop playsinline>
+        <source src="C:\Users\S ADITYA\Downloads\3bccf4b0750381f184e88862c6b5869b.mp4" type="video/mp4">
+    </video>
+    
+    <!-- OVERLAY -->
+    <div class="bg-overlay"></div>
+
+    <!-- MAIN CONTAINER -->
+    <main class="main-container">
+        <!-- HEADER -->
+        <div class="header">
+            <h1 class="app-title">
+                <span class="title-text">My Task Manager</span>
+                <span class="title-glow"></span>
+            </h1>
+            <p class="app-subtitle">Stay focused, stay calm</p>
+        </div>
+
+        <!-- TOP SECTION: COUNTER, INPUT, PROGRESS -->
+        <div class="top-section">
+            <!-- TASK COUNTER -->
+            <div class="counter-box">
+                <div class="counter-label">Tasks</div>
+                <div class="counter-value">
+                    <span id="activeCount">0</span>
+                    <span class="counter-divider">/</span>
+                    <span id="totalCount">0</span>
+                </div>
+            </div>
+
+            <!-- INPUT SECTION -->
+            <div class="input-section">
+                <form id="taskForm" class="task-form">
+                    <div class="input-wrapper">
+                        <input 
+                            type="text" 
+                            id="taskInput" 
+                            class="task-input" 
+                            placeholder="Add a new task..." 
+                            autocomplete="off"
+                        >
+                        <span class="input-border"></span>
+                    </div>
+                    <button type="submit" class="add-btn">
+                        <i class="fas fa-plus"></i>
+                        <span>Add</span>
+                    </button>
+                </form>
+            </div>
+
+            <!-- PROGRESS INDICATOR -->
+            <div class="progress-box">
+                <svg class="progress-ring" width="80" height="80" viewBox="0 0 80 80">
+                    <!-- Background circle -->
+                    <circle
+                        cx="40"
+                        cy="40"
+                        r="36"
+                        fill="none"
+                        stroke="rgba(253, 184, 94, 0.15)"
+                        stroke-width="4"
+                    />
+                    <!-- Progress circle -->
+                    <circle
+                        id="progressCircle"
+                        cx="40"
+                        cy="40"
+                        r="36"
+                        fill="none"
+                        stroke="url(#progressGradient)"
+                        stroke-width="4"
+                        stroke-linecap="round"
+                        stroke-dasharray="226.19"
+                        stroke-dashoffset="226.19"
+                        transform="rotate(-90 40 40)"
+                        class="progress-stroke"
+                    />
+                    <defs>
+                        <linearGradient id="progressGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#FBB45E;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#C99769;stop-opacity:1" />
+                        </linearGradient>
+                    </defs>
+                </svg>
+                <div class="progress-text">
+                    <span id="progressPercent">0</span>%
+                </div>
+            </div>
+        </div>
+
+        <!-- FILTER BUTTONS -->
+        <div class="filter-section">
+            <button class="filter-btn active" data-filter="all">
+                <i class="fas fa-list"></i>
+                <span>All</span>
+            </button>
+            <button class="filter-btn" data-filter="active">
+                <i class="fas fa-circle"></i>
+                <span>Active</span>
+            </button>
+            <button class="filter-btn" data-filter="completed">
+                <i class="fas fa-check-circle"></i>
+                <span>Completed</span>
+            </button>
+        </div>
+
+        <!-- TASK LIST -->
+        <div class="tasks-wrapper">
+            <ul id="taskList" class="task-list">
+                <!-- Tasks will be rendered here -->
+            </ul>
+
+            <!-- EMPTY STATE -->
+            <div id="emptyState" class="empty-state">
+                <div class="empty-icon">
+                    <i class="fas fa-inbox"></i>
+                </div>
+                <p class="empty-text">No tasks yet</p>
+                <p class="empty-subtext">Add one to get started!</p>
+            </div>
+        </div>
+
+        <!-- FOOTER ACTIONS -->
+        <div class="footer-actions">
+            <button id="clearBtn" class="clear-btn" style="display: none;">
+                <i class="fas fa-trash-alt"></i>
+                <span>Clear Completed</span>
+            </button>
+        </div>
+    </main>
+
+    <!-- PARTICLE CONTAINER FOR ANIMATIONS -->
+    <div id="particleContainer" class="particle-container"></div>
+
+    <!-- JAVASCRIPT -->
+    <script src="todo.js"></script>
+</body>
+</html>
